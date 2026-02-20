@@ -78,7 +78,6 @@ quickcart-data-reconciliation/
 └── docs/
     └── analysis_report.md        # Findings and recommendations
 
-
 ## 🚀 Setup Instructions
 Prerequisites
 Python 3.8+
