@@ -1,15 +1,15 @@
 # QuickCart Data Integrity Crisis 
 
-### A comprehensive data engineering project that demonstrates data cleaning, reconciliation, and financial analysis skills through a real-world e-commerce scenario.
+A comprehensive data engineering project that demonstrates data cleaning, reconciliation, and financial analysis skills through a real-world e-commerce scenario.
 
-📋 Project Overview
+## 📋 Project Overview
 Scenario:
 QuickCart, a fast-growing e-commerce startup, has discovered a critical P0 incident: their Marketing dashboard shows different total sales than their bank settlement statement. Finance cannot close the month, and the CEO has escalated this issue.
 
-Mission:
+## Mission:
 Establish a single, bank-reconcilable source of truth for total revenue by cleaning messy transaction logs and reconciling multiple data sources.
 
-🎯 Business Problem
+## 🎯 Business Problem
 The Crisis
 Marketing's "Total Sales" dashboard: $X
 Bank settlement statement: $Y
@@ -22,8 +22,8 @@ Multiple payment attempts per order causing duplicates
 Orphan payments with no associated orders
 
 
-🛠️ Technical Skills Demonstrated
-Python
+## 🛠️ Technical Skills Demonstrated
+### Python
 Nested JSON parsing and data extraction
 Currency normalization across multiple formats
 Data validation and sanitization
@@ -31,7 +31,7 @@ File I/O operations (JSONL, CSV)
 Object-oriented programming
 Error handling and logging
 
-SQL
+### SQL
 Common Table Expressions (CTEs)
 Window functions (ROW_NUMBER for deduplication)
 Complex JOINs and subqueries
@@ -39,11 +39,11 @@ NULL handling with COALESCE
 Data reconciliation logic
 Aggregation and financial calculations
 
-Database Technologies
+### Database Technologies
 PostgreSQL: Relational data storage and querying
 MongoDB: NoSQL archival of raw transaction logs
 
-Data Engineering Best Practices
+### Data Engineering Best Practices
 Data quality assessment
 Deduplication strategies
 Idempotent data pipelines
@@ -51,7 +51,7 @@ Comprehensive documentation
 Version control with Git
 
 
-📁 Project Structure
+## 📁 Project Structure
 quickcart-data-reconciliation/
 ├── .gitignore                    # Excludes sensitive/large files
 ├── README.md                     # This file
@@ -79,7 +79,7 @@ quickcart-data-reconciliation/
     └── analysis_report.md        # Findings and recommendations
 
 
-🚀 Setup Instructions
+## 🚀 Setup Instructions
 Prerequisites
 Python 3.8+
 PostgreSQL 12+
@@ -87,13 +87,13 @@ MongoDB 4.4+
 pip (Python package manager)
 
 
-1. Clone Repository
+### 1. Clone Repository
 bash
 git clone https://github.com/yourusername/quickcart-data-reconciliation.git
 cd quickcart-data-reconciliation
 
 
-2. Create Virtual Environment
+### 2. Create Virtual Environment
 bash
 python -m venv venv
 
@@ -104,12 +104,12 @@ venv\Scripts\activate
 source venv/bin/activate
 
 
-3. Install Dependencies
+### 3. Install Dependencies
 bash
 pip install -r requirements.txt
 
 
-4. Setup PostgreSQL
+### 4. Setup PostgreSQL
 Create Database
 bash
 psql -U postgres
@@ -120,14 +120,14 @@ bash
 psql -U postgres -d quickcart_db -f schema.sql
 
 
-5. Setup Environment Variables
+### 5. Setup Environment Variables
 Create .env file:
 
 DATABASE_URL=postgresql://postgres:your_password@localhost:5432/quickcart_db
 MONGODB_URI=mongodb://localhost:27017/
 
 
-6. Generate Synthetic Data
+### 6. Generate Synthetic Data
 bash
 cd scripts
 python generate_quickcart_data.py --outdir ../quickcart_data
@@ -139,14 +139,14 @@ Expected Output:
 70,000 bank settlement rows
 
 
-7. Load Data into PostgreSQL
+### 7. Load Data into PostgreSQL
 bash
 psql -U postgres -d quickcart_db -f quickcart_data/seed_orders.sql
 psql -U postgres -d quickcart_db -f quickcart_data/seed_payments.sql
 psql -U postgres -d quickcart_db -f quickcart_data/seed_bank_settlements.sql
 
 
-8. Verify Data Loaded
+### 8. Verify Data Loaded
 bash
 psql -U postgres -d quickcart_db
 
@@ -157,7 +157,7 @@ UNION ALL
 SELECT 'bank_settlements', COUNT(*) FROM bank_settlements;
 
 
-🎬 Running the Project
+###🎬 Running the Project
 Step 1: Clean Transaction Logs (Python)
 bash
 python scripts/clean_transactions.py
@@ -170,13 +170,13 @@ Removes invalid/incomplete records
 Outputs output/cleaned_transactions.csv
 
 
-Expected Output:
+### Expected Output:
 
 📊 Processing 150,000 records...
 Cleaning: 100%|██████████| 150000/150000
 ✅ Wrote 95,432 cleaned records
 
-📊 CLEANING STATISTICS
+### 📊 CLEANING STATISTICS
 Total records processed:        150,000
 Valid records output:            95,432
 Test transactions filtered:       8,500
@@ -195,7 +195,7 @@ Calculates discrepancy gap
 Produces finance-grade reconciliation report
 
 
-Expected Output:
+### Expected Output:
 
 ============================
 QUICKCART RECONCILIATION REPORT
@@ -220,7 +220,7 @@ Handles duplicates gracefully
 Provides archival timestamps
 
 
-Expected Output:
+### Expected Output:
 
 🔌 Connected to MongoDB database: quickcart
 💾 Inserting 150,000 documents to MongoDB...
@@ -231,7 +231,7 @@ Successfully inserted:          150,000
 Duplicates skipped:                   0
 
 
-📊 Key Results & Findings
+## 📊 Key Results & Findings
 Data Quality Issues Found
 8,500 test transactions (5.6%) mixed with production data
 35,068 records (23.4%) had invalid/missing amount fields
@@ -239,20 +239,20 @@ Currency format chaos: 5 different formats across logs
 1,234 orphan payments totaling $234,567.00 with no orders
 
 
-Reconciliation Insights
+### Reconciliation Insights
 Total Successful Sales: $8,234,567.89 (47,321 orders)
 Bank Settled Amount: $8,156,234.12
 Discrepancy Gap: $78,333.77 (0.95% of sales)
 
 
-Root Causes of Discrepancy
+### Root Causes of Discrepancy
 Partial settlements due to processing fees
 Pending settlements not yet reflected in bank
 Orphan payments requiring investigation
 Duplicate payment attempts in raw logs
 
 
-💡 Technical Decisions
+### 💡 Technical Decisions
 Why These Technologies?
 PostgreSQL:
 
@@ -281,7 +281,7 @@ python
 1000      → 10.00  # Assume cents if >= 100
 null/""   → None   # Filter out
 
-Deduplication Approach:
+### Deduplication Approach:
 
 sql
 ROW_NUMBER() OVER (
@@ -290,7 +290,7 @@ ROW_NUMBER() OVER (
 )
 Keeps only the first successful payment per order.
 
-🚫 Files NOT in Git
+## 🚫 Files NOT in Git
 The following are excluded via .gitignore:
 
 quickcart_data/     # Generated data (~500MB)
@@ -308,20 +308,20 @@ Reproducible from scripts
 Environment-specific
 
 
-📈 Performance Metrics
+### 📈 Performance Metrics
 Data Processing
 JSON parsing: 150,000 records in ~45 seconds
 Currency normalization: 95,432 records processed
 SQL reconciliation: Executes in ~3 seconds on 195,000 total rows
 
 
-Data Quality
+### Data Quality
 Success rate: 63.6% of raw logs are valid transactions
 Test filter accuracy: 100% (based on flags + email patterns)
 Deduplication: Reduced 75,000 payments to 47,321 unique
 
 
-🎓 Learning Outcomes
+## 🎓 Learning Outcomes
 Python Skills
 ✅ Nested JSON navigation
 ✅ Type handling and normalization
@@ -367,7 +367,7 @@ venv\Scripts\activate     # Windows
 pip install -r requirements.txt
 
 
-📚 Further Improvements
+### 📚 Further Improvements
 Future Enhancements
 Airflow orchestration for automated daily runs
 Data validation tests using Great Expectations
@@ -378,7 +378,7 @@ Docker containerization for portability
 CI/CD pipeline with GitHub Actions
 
 
-👤 Author
+### 👤 Author
 Mark-David
 
 Database Administrator
@@ -387,10 +387,10 @@ LinkedIn: [your-profile]
 Email: okoyemarkdavid@gmail.com
 
 
-📝 License
+### 📝 License
 This project is created for educational and portfolio purposes.
 
-🙏 Acknowledgments
+### 🙏 Acknowledgments
 Synthetic data generator based on industry best practices
 Project structure inspired by real-world data engineering scenarios
 Special thanks to the data engineering community
