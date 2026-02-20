@@ -52,6 +52,8 @@ Version control with Git
 
 
 ## 📁 Project Structure
+
+```text
 quickcart-data-reconciliation/
 ├── .gitignore                    # Excludes sensitive/large files
 ├── README.md                     # This file
@@ -77,6 +79,7 @@ quickcart-data-reconciliation/
 │
 └── docs/
     └── analysis_report.md        # Findings and recommendations
+```
 
 ## 🚀 Setup Instructions
 Prerequisites
