@@ -1,6 +1,6 @@
-QuickCart Data Integrity Crisis 
+# QuickCart Data Integrity Crisis 
 
-A comprehensive data engineering project that demonstrates data cleaning, reconciliation, and financial analysis skills through a real-world e-commerce scenario.
+### A comprehensive data engineering project that demonstrates data cleaning, reconciliation, and financial analysis skills through a real-world e-commerce scenario.
 
 📋 Project Overview
 Scenario:
