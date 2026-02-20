@@ -1,0 +1,12 @@
+# cspell:disable
+venv/
+.env
+quickcart_data
+output/
+*.log
+__pycache__/
+.env
+*.db
+.DS_Store
+reconciliation_report.txt
+*.txt
